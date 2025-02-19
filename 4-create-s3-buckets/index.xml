@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Amazon Simple Storage Service (S3) on AWS Spotify Data</title>
+    <link>http://thientulenguyen.github.io/4-create-s3-buckets/</link>
+    <description>Recent content in Amazon Simple Storage Service (S3) on AWS Spotify Data</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <lastBuildDate></lastBuildDate>
+    <atom:link href="http://thientulenguyen.github.io/4-create-s3-buckets/index.xml" rel="self" type="application/rss+xml" />
+  </channel>
+</rss>

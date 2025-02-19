@@ -1,0 +1,155 @@
+[
+{
+	"uri": "http://thientulenguyen.github.io/vi/1-introduce/",
+	"title": "Giới thiệu",
+	"tags": [],
+	"description": "",
+	"content": "Trong bài workshop này chúng ta dùng các dịch vụ của AWS như Amazon S3, AWS Glue, Amazon Athena và Amazon QuickSight thấy được cách chúng hoạt động cùng nhau trong hệ sinh thái dữ liệu. Đây là các công cụ hỗ trợ chúng ta trong việc lưu trữ dữ liệu và dịch vụ mạnh mẽ để xử lý, phân tích và trực quan hóa dữ liệu.\nChúng ta cùng tìm hiểu sơ lược về chúng:\n1. Amazon S3 – Dịch vụ lưu trữ đám mây: Amazon S3 (Simple Storage Service) là dịch vụ lưu trữ đối tượng (object storage) mạnh mẽ, an toàn và mở rộng linh hoạt. Tính năng chính:\nLưu trữ dữ liệu lớn, không giới hạn (file, ảnh, video, log, dataset). Hỗ trợ phân quyền truy cập (IAM, Bucket Policy). Tích hợp với Glue, Athena, QuickSight để phân tích dữ liệu. Hỗ trợ nhiều định dạng dữ liệu (CSV, JSON, Parquet, ORC). Ví dụ: Chúng ta lưu dữ liệu người dùng trong S3. Glue có thể crawl dữ liệu này, Athena có thể truy vấn nó, và QuickSight có thể tạo dashboard từ đó. 2. AWS Glue – Dịch vụ ETL (Extract, Transform, Load): AWS Glue là dịch vụ ETL không máy chủ (serverless) giúp phát hiện, chuẩn bị và chuyển đổi dữ liệu từ nhiều nguồn khác nhau vào kho dữ liệu hoặc Amazon Athena để phân tích. Tính năng chính:\nCrawler: Tự động phát hiện schema của dữ liệu trong S3 và tạo bảng trong AWS Glue Data Catalog. ETL Jobs: Chạy các script PySpark/Python để chuyển đổi dữ liệu (ví dụ: lọc, làm sạch, chuẩn hóa). Data Catalog: Quản lý metadata của dữ liệu (bảng, schema, nguồn dữ liệu). Tích hợp với Athena \u0026amp; QuickSight để phân tích dữ liệu nhanh chóng. Ví dụ: Chúng ta có dữ liệu raw trong S3. Chúng ta dùng Glue ETL Job để làm sạch dữ liệu, sau đó lưu vào S3 dưới dạng bảng có thể truy vấn bằng Athena. 3. Amazon Athena – Dịch vụ truy vấn SQL trên S3: Amazon Athena là dịch vụ truy vấn dữ liệu không máy chủ dùng SQL chuẩn (Presto/Trino) để truy vấn dữ liệu trực tiếp trên S3 mà không cần thiết lập database hoặc cluster. Tính năng chính:\nKhông cần cài đặt cơ sở dữ liệu, chỉ cần có dữ liệu trên S3. Hỗ trợ SQL tiêu chuẩn để truy vấn dữ liệu. Tích hợp với AWS Glue Data Catalog để quản lý schema. Chỉ trả phí cho dữ liệu đã quét. Ví dụ: Dữ liệu của chúng ta được lưu trong S3 dưới dạng Parquet, CSV hoặc JSON. Chúng ta có thể tạo bảng trong Glue Catalog, rồi dùng Athena để chạy SQL query. 4. Amazon QuickSight – Trực quan hóa dữ liệu: Amazon QuickSight là dịch vụ BI (Business Intelligence) không máy chủ giúp Chúng ta trực quan hóa dữ liệu từ nhiều nguồn như Athena, S3, RDS, Redshift, Snowflake… Tính năng chính:\nKết nối trực tiếp với Athena để trực quan hóa dữ liệu trên S3. Hỗ trợ dashboard, biểu đồ, phân tích AI (ML Insights). Tích hợp với S3, Glue, Athena để tạo báo cáo tự động. Nhúng dashboard vào ứng dụng web hoặc chia sẻ cho người dùng khác. Ví dụ: Chúng ta có dữ liệu doanh thu trong S3, đã được chuẩn hóa bằng Glue, truy vấn bằng Athena. Chúng ta có thể dùng QuickSight để tạo biểu đồ doanh thu theo tháng, theo sản phẩm. Cách chúng hoạt động cùng nhau\nDữ liệu raw được lưu trữ trong S3. AWS Glue crawl dữ liệu → tạo Glue Data Catalog → Chạy ETL để làm sạch dữ liệu. Athena truy vấn dữ liệu trên S3 bằng SQL. QuickSight trực quan hóa dữ liệu từ Athena để tạo báo cáo, dashboard. Trong bài workshop này phân tích dữ liệu Spotify\nDữ liệu Spotify được lưu trên S3. Glue ETL xử lý và chuyển đổi dữ liệu (chuẩn hóa định dạng, xoá dữ liệu trùng lặp). Athena chạy SQL truy vấn 10 nghệ sĩ,\u0026hellip; QuickSight hiển thị biểu đồ các bản nhạc phổ biến,\u0026hellip; Kiến trúc "
+},
+{
+	"uri": "http://thientulenguyen.github.io/vi/",
+	"title": "Home",
+	"tags": [],
+	"description": "",
+	"content": "Ứng dụng AWS Glue, Athena và QuickSight trong thao tác với dữ liệu Tổng quan Trong bài workshop này, chúng ta sẽ dùng một giải pháp kỹ thuật dữ liệu (Data Engineering) sử dụng các dịch vụ AWS để thu thập, xử lý và phân tích dữ liệu Spotify. Hệ thống bao gồm AWS Glue để xây dựng pipeline ETL (Extract, Transform, Load), AWS Athena để truy vấn dữ liệu và AWS QuickSight để trực quan hóa kết quả.\nNội dung Giới thiệu Các bước chuẩn bị Tạo IAM User Tạo S3 Buckets AWS Glue AWS Athena Quicksight Dọn dẹp tài nguyên "
+},
+{
+	"uri": "http://thientulenguyen.github.io/vi/6-awsathena/6.1-go-to-awsathena/",
+	"title": "Khởi động Athena",
+	"tags": [],
+	"description": "",
+	"content": "Sau các bước trước chúng ta đã có dữ liệu vào các S3 được lưu vào tables mà phần trước chúng ta dùng Crawler để thu thập. Bước này chúng ta sẽ truy vấn bằng AWS Athena.\nTruy cập vào giao diện AWS Athena Tại ô tìm kiếm, điền Athena.\nChọn vào ô Athena.\nTiếp tục chọn Launch query editor.\nỞ thanh phía trên chọn Settings rồi chọn Manage\nChọn S3 mà chúng ta đã tạo cho Athena ở phần trước.\nChúng ta thử truy vấn một vài lệnh trong trang Lấy 10 dữ liệu đầu trong datawarehouse\nselect * from datawarehouse limit 10\nKết quả\nLấy 10 dữ liệu có tên nghệ sĩ và tên nhạc trong datawarehouse\nselect name, track_name from datawarehouse limit 10\nKết quả\nCác kết quả khi chúng ta truy vấn cũng được lưu vào S3 mà chúng ta đã tạo\nNhư vậy chúng ta đã thành công sử dụng Athena để truy vấn dữ liệu trong tables.\n"
+},
+{
+	"uri": "http://thientulenguyen.github.io/vi/3-create_iam_user/3.1-login-to-aws/",
+	"title": "Tạo IAM User",
+	"tags": [],
+	"description": "",
+	"content": "Trong bước này chúng ta sẽ tạo tài khoản IAM mới.\nTạo IAM User Đăng nhập vào AWS Console\nTruy cập vào giao diện quản trị dịch vụ IAM\nTại ô tìm kiếm , điền IAM.\nClick vào ô IAM.\nClick vào ô User.\nChọn Create user. Đặt tên cho user là projectFCJ\nChọn I want to create an IAM user\nChọn Custom password đặt mật khẩu là HelloFCJ123@\nNếu muốn đổi mật khẩu khi đăng nhập lần tiếp theo thì chọn User must create a new password at next sign in. Sau đó chọn Next.\nTiếp theo chúng ta sẽ tiến hành gán các chính sách cần thiết cho IAM User.\n"
+},
+{
+	"uri": "http://thientulenguyen.github.io/vi/4-create-s3-buckets/4.1-creates3bucket/",
+	"title": "Tạo S3 Bucket cho lưu trữ dữ liệu ",
+	"tags": [],
+	"description": "",
+	"content": "Trong bước này, chúng ta sẽ tạo 1 S3 bucket để lưu trữ các tệp dữ liệu đã tải từ phần 2\nTạo S3 Bucket Truy cập giao diện quản trị dịch vụ S3 Tại ô tìm kiếm , điền S3. Chọn vào ô S3. Chọn Create bucket. Tại trang Create bucket. Tại mục Bucket name điền tên bucket project-spotify-data-2025 Tại các mục còn lại giữ nguyên Chọn Create bucket. Như vậy chúng ta đã tạo thành côngS3 Bucket Tên S3 bucket phải đảm bảo không trùng với toàn bộ S3 bucket khác trong hệ thống. Bạn có thể thay thế tên mình và điền số ngẫu nhiên khi tạo tên S3 bucket.\nTạo thư mục trong S3 Chọn Create Folder trong S3 vừa tạo. Tại trang Create folder. Tại mục Folder name điền tên folder staging Kéo chuột xuống phía dưới và chọn Create folder. Tương tự cho thư mục datawarehouse Upload các tệp dữ liệu vào thư mục Staging Chọn Folder staging trong S3 vừa tạo. Upload các tệp dữ liệu vào thư mục Staging. Kiểm tra các tệp đã có trong thư mục Staging Như vậy chúng ta đã thành công tạo s3 và 2 thư mục đầu vào và đầu ra cho dữ liệu của chúng ta.\n"
+},
+{
+	"uri": "http://thientulenguyen.github.io/vi/5-aws-glue/5.1-create-a-visual-etl/",
+	"title": "Tạo Visual ETL",
+	"tags": [],
+	"description": "",
+	"content": "Trong bước này chúng ta sẽ dùng Glue để thực hiện quá trình ETL và lưu vào S3 dưới dạng bảng.\nTruy cập vào AWS Glue Truy cập giao diện quản trị dịch vụ Glue Tại ô tìm kiếm , điền Glue.\nChọn vào ô Glue.\nChọn Visual ETL ở thanh bên trái màn hình.\nTạo Visual ETL Trong Create job, chọn Visual ETL Trong hộp thoại Add nodes, chọn Amazon S3\nChọn vào S3 vừa tạo chúng ta đổi tên tương ứng với tên tệp dữ liệu.\nChọn S3 URL của tệp dữ liệu đó\nChọn Data format là CSV\nTương tự cho các tệp dữ liệu còn lại\nTrong hộp thoại Add nodes, chọn Transform chọn Join Kéo chấm đen phần dưới của artists, albums vào chấm đen phần trên của Join vừa tạo\nChọn Join vừa tạo\nĐặt tên là Join Album \u0026amp; Artist\nChọn Add condition và chọn 2 điều kiện tương ứng ở mỗi tệp dữ liệu\nTương tự cho Join giữa Join Album \u0026amp; Artist và track\nTrong hộp thoại Add nodes, chọn Transform chọn Drop Fields\nChọn vào Drop fields vừa tạo và chọn 2 trường id và .track_id\nTrong hộp thoại Add nodes, chọn Targets chọn Amazon S3\nĐặt tên là Destination và chọn Compresstion type là Snappy\nChọn S3 URL của thư mục đầu ra cho dữ liệu đó\nChọn thư mục datawarehouse đã tạo ở bước trước.\nChúng ta có được 1 Visual ETL đơn giản\nChọn thư mục datawarehouse đã tạo ở bước trước.\nNgoài ra khi chúng ta thực hiện thao tác như nãy giờ thì hệ thống cũng tự động tạo Script tương ứng.\nChọn Job details, đặt tên là Spotify Project Các giá trị còn lại giữ nguyên, ngoại trừ Requested numer of wokers chúng ta chỉnh thành 5, vì bài này đơn giản.\nChọn Save.\nLưu thành công\nNhư vậy chúng ta đã thành công tạo Visual ETL cho dữ liệu của chúng ta\n"
+},
+{
+	"uri": "http://thientulenguyen.github.io/vi/7-aws-quicksight/7.1-access-quicksight/",
+	"title": "Truy cập vào Amazon QuickSight",
+	"tags": [],
+	"description": "",
+	"content": "Chúng ta sẽ dùng QuickSight để trực quan hóa dữ liệu từ Athena.\nTruy cập vào giao diện AWS QuickSight Chúng ta dùng tài khoản root để đăng kí Quicksight nếu đây là lần đầu dùng.\nTại ô tìm kiếm, điền Quicksight.\nChọn vào ô Quicksight.\nChọn Sign up for Quicksight.\nNhập email và chọn như trên hình.\nĐặt tên cho account.\nChọn IAM, Amazon Athena, Amazon S3 và bỏ chọn phần Add-on.\nĐợi một ít thời gian và sẽ hiện thông báo hoàn tất đăng ký\nGiao diện của Quicksight\nChúng ta vào kiểm tra những tài khoản dùng Quicksight\nGóc trên bên phải chọn như trên hình\nNhư vậy chúng ta đã đăng kí thành công và có thể sử dụng Amazon QuickSight.\n"
+},
+{
+	"uri": "http://thientulenguyen.github.io/vi/2-prerequiste/",
+	"title": "Các bước chuẩn bị",
+	"tags": [],
+	"description": "",
+	"content": "Chúng ta cần đăng nhập vào tài khoản Root và tạo một tài khoản IAM và cấp một vài chính sách để có thể dễ dàng quản lí tài nguyên mà chúng ta sử dụng trong bài này. Chúng ta có thể tham khảo phía dưới.\nTạo tài khoản IAM Trong bài này chúng ta có dùng dữ liệu Spotify, chúng ta có thể tải ở phía dưới đây.\nDữ liệu Spotify (albums, artists, track) "
+},
+{
+	"uri": "http://thientulenguyen.github.io/vi/3-create_iam_user/3.2-assign-relevent-role/",
+	"title": "Gán các chính sách",
+	"tags": [],
+	"description": "",
+	"content": "Trong bước này chúng ta sẽ tiến hành gán các chính sách cần thiết cho IAM User.\nGán các chính sách Chọn Attach policies directly và chọn Next. Chọn các chính sách như sau:\nTại ô tìm kiếm, điền S3Full.\nChọn vào AmazonS3FullAccess.\nTương tự chon các chính sách còn lại.\nAWSGlueConsoleFullAccess AmazonAthenaFullAccess AWSQuicksightAthenaAccess AWSQuickSightDescribeRDS Chọn Next\nKiểm tra lại và chọn Create user\nTạo thành công\nTiếp theo chúng ta sẽ tiến hành đăng nhập vào tài khoản IAM vừa tạo.\n"
+},
+{
+	"uri": "http://thientulenguyen.github.io/vi/5-aws-glue/5.2-run-and-monitor-etl/",
+	"title": "Khởi động ETL",
+	"tags": [],
+	"description": "",
+	"content": "Trong bước này chúng ta sẽ khởi động ETL và xem các biểu đồ giám sát quá trình chạy.\nKhởi động ETL Chọn Run.\nChúng ta đợi một khoảng thời gian để chạy\nChúng ta có thể xem các thông tin về Job run\nThông tin giám sát Sau khi ETL được chạy thì chúng ta có thể xem 1 vài thông tin giám sát quá trình chạy.\nChúng ta vào S3 Bucket mà chúng ta đã tạo có thư mục datawarehouse và thấy có các tệp đầu ra kết quả sau khi quá trình chạy.\nNhư vậy chúng ta đã chạy thành công Visual ETL mà chúng ta đã chạy ở bước trước.\n"
+},
+{
+	"uri": "http://thientulenguyen.github.io/vi/4-create-s3-buckets/4.2-create-s3-for-athena/",
+	"title": "Tạo S3 Bucket cho Athena",
+	"tags": [],
+	"description": "",
+	"content": "Trong bước này chúng ta sẽ tạo 1 S3 Bucket để lưu trữ dữ liệu cho AWS Athena.\nTạo S3 Bucket Truy cập giao diện quản trị dịch vụ S3 Tại ô tìm kiếm , điền S3. Chọn vào ô S3. Chọn Create bucket. Tại trang Create bucket. Tại mục Bucket name điền tên bucket athena-ouput-spotifyproject-2025 Tại các mục còn lại giữ nguyên và chọn Create bucket.\nNhư vậy chúng ta đã tạo thành côngS3 Bucket\nTên S3 bucket phải đảm bảo không trùng với toàn bộ S3 bucket khác trong hệ thống. Bạn có thể thay thế tên mình và điền số ngẫu nhiên khi tạo tên S3 bucket.\nNhư vậy chúng ta đã thành công tạo s3 để lưu trữ dữ liệu cho AWS Athena.\n"
+},
+{
+	"uri": "http://thientulenguyen.github.io/vi/7-aws-quicksight/7.2-use-quicksight/",
+	"title": "Trực quan hóa dữ liệu QuickSight",
+	"tags": [],
+	"description": "",
+	"content": "Sau khi đăng kí thành công tài khoản thì chúng ta sẽ dùng QuickSight cho việc trực quan hóa dữ liệu.\nChúng ta chuyển sang dùng tài khoản IAM vì nó có trong danh sách tài khoản được truy cập. Chọn Datasets rồi chọn New datasets.\nChọn Athena.\nĐặt tên cho dataset: Spotify Project và chọn Create data source\nChọn tables datawarehouse đã tạo và chọn select.\nChọn tiếp tục visualize.\nChúng ta quay lại trang datasets và chọn dataset vừa tạo.\nĐợi một lúc để dữ liệu được nhập.\nDữ liệu được thêm thành công.\nChọn Use in Analysis.\nChúng ta sẽ thử trực quan hóa dữ liệu Top 2500 tên album\nBiểu đồ tròn thể hiện các bài nhạc phân loại theo đề mục\nChúng ta đã thành công trực quan dữ liệu từ Athena.\nChúc mừng bạn đã hoàn thành bài lab này.\n"
+},
+{
+	"uri": "http://thientulenguyen.github.io/vi/3-create_iam_user/3.3-login-to-iam-user/",
+	"title": "Đăng nhập vào tài khoản IAM",
+	"tags": [],
+	"description": "",
+	"content": "Trong bước này chúng ta sẽ tiến hành đăng nhập vào tài khoản IAM vừa tạo.\nĐăng nhập vào tài khoản IAM Sao chép liên kết Console sign-in URL, User name, Console password Mở trang web mới và truy cập vào URL Nhập User name, Console password và đăng nhập\nHệ thống yêu cầu chúng ta đổi mật khẩu chúng ta sẽ đổi thành: XinChaoFCJ2025@\nGiao diện khi đăng nhập thành công, nhìn vào góc trên bên phải chúng ta sẽ thấy được thông tin tài khoản IAM User Chúng ta hoàn thành việc tạo và gán các chính sách cho tài khoản.\n"
+},
+{
+	"uri": "http://thientulenguyen.github.io/vi/5-aws-glue/5.3-run-the-crawler/",
+	"title": "Khởi động Glue Crawler",
+	"tags": [],
+	"description": "",
+	"content": "Sau các bước trước chúng ta đã có được dữ liệu nhưng chúng chưa được thu thập vào database. Ở bước này chúng ta sẽ thu thập chúng bằng Glue Crawler.\nTạo Crawlers Truy cập vào giao diện AWS Glue Crawlers Tại ô tìm kiếm, điền Crawlers.\nChọn vào ô Crawlers.\nChọn Create crawler.\nNhập tên cho Crawler: ndl_\nChưa có data nên chúng ta sẽ chọn Add a data source để thêm data. Chọn đến thư mục datawarehouse trong S3\nChọn IAM Role, nếu có thì thực hiện như ảnh. Chọn database, trước tiên chúng ta cần tạo database. Mở tab khác, trong Data Catalog, chọn Databases và chọn Add database.\nĐặt tên cho database: Spotify\nQuay lại tab Create crawler đang tạo và chọn database vừa tạo. Kiểm tra và chọn create crawler\nTạo thành công Glue Crawler.\nKhởi động Crawlers Khởi động Crawler vừa tạo, chọn Run crawler.\nSau khi chạy chúng ta vào table trong data catalog và thấy file kết quả\nChúng ta có thể thấy được thông tin của file\nNgoài ra chúng ta còn có thể thấy được Schema của dữ liệu\nNhư vậy chúng ta đã thành công thu thập dữ liệu bằng Crawlers sau quá trình ETL.\n"
+},
+{
+	"uri": "http://thientulenguyen.github.io/vi/3-create_iam_user/",
+	"title": "Tạo IAM User và gán chính sách",
+	"tags": [],
+	"description": "",
+	"content": "Trong bước này chúng ta sẽ tạo tài khoản IAM mới và gán các chính sách cần thiết cho bài.\nNội dung 3.1. Tạo IAM User 3.2. Gán các chính sách 3.3. Đăng nhập vào tài khoản IAM\n"
+},
+{
+	"uri": "http://thientulenguyen.github.io/vi/4-create-s3-buckets/",
+	"title": "Amazon Simple Storage Service (S3)",
+	"tags": [],
+	"description": "",
+	"content": "Amazon S3 – Dịch vụ lưu trữ đám mây Amazon S3 (Simple Storage Service) là dịch vụ lưu trữ đối tượng (object storage) mạnh mẽ, an toàn và mở rộng linh hoạt. Tính năng chính:\nLưu trữ dữ liệu lớn, không giới hạn (file, ảnh, video, log, dataset).\nHỗ trợ phân quyền truy cập (IAM, Bucket Policy).\nTích hợp với Glue, Athena, QuickSight để phân tích dữ liệu.\nHỗ trợ nhiều định dạng dữ liệu (CSV, JSON, Parquet, ORC).\nNội dung: 4.1. Tạo S3 Bucket 4.2. Tạo S3 Bucket cho Athena\n"
+},
+{
+	"uri": "http://thientulenguyen.github.io/vi/5-aws-glue/",
+	"title": "AWS Glue",
+	"tags": [],
+	"description": "",
+	"content": "AWS Glue – Dịch vụ ETL (Extract, Transform, Load) AWS Glue là dịch vụ ETL không máy chủ (serverless) giúp phát hiện, chuẩn bị và chuyển đổi dữ liệu từ nhiều nguồn khác nhau vào kho dữ liệu hoặc Amazon Athena để phân tích. Tính năng chính:\nCrawler: Tự động phát hiện schema của dữ liệu trong S3 và tạo bảng trong AWS Glue Data Catalog. ETL Jobs: Chạy các script PySpark/Python để chuyển đổi dữ liệu (ví dụ: lọc, làm sạch, chuẩn hóa). Data Catalog: Quản lý metadata của dữ liệu (bảng, schema, nguồn dữ liệu). Tích hợp với Athena \u0026amp; QuickSight để phân tích dữ liệu nhanh chóng. Nội dung 5.1. Tạo Visual ETL 5.2. Khởi động ETL 5.3. Khởi động Glue Crawler\n"
+},
+{
+	"uri": "http://thientulenguyen.github.io/vi/6-awsathena/",
+	"title": "AWS Athena",
+	"tags": [],
+	"description": "",
+	"content": "Amazon Athena – Dịch vụ truy vấn SQL trên S3 Amazon Athena là dịch vụ truy vấn dữ liệu không máy chủ dùng SQL chuẩn (Presto/Trino) để truy vấn dữ liệu trực tiếp trên S3 mà không cần thiết lập database hoặc cluster. Tính năng chính:\nKhông cần cài đặt cơ sở dữ liệu, chỉ cần có dữ liệu trên S3. Hỗ trợ SQL tiêu chuẩn để truy vấn dữ liệu. Tích hợp với AWS Glue Data Catalog để quản lý schema. Chỉ trả phí cho dữ liệu đã quét. Nội dung 6.1. Khởi động Athena\n"
+},
+{
+	"uri": "http://thientulenguyen.github.io/vi/7-aws-quicksight/",
+	"title": "AWS QuickSight",
+	"tags": [],
+	"description": "",
+	"content": "Amazon QuickSight – Trực quan hóa dữ liệu Amazon QuickSight là dịch vụ BI (Business Intelligence) không máy chủ giúp bạn trực quan hóa dữ liệu từ nhiều nguồn như Athena, S3, RDS, Redshift, Snowflake… Tính năng chính:\nKết nối trực tiếp với Athena để trực quan hóa dữ liệu trên S3. Hỗ trợ dashboard, biểu đồ, phân tích AI (ML Insights). Tích hợp với S3, Glue, Athena để tạo báo cáo tự động. Nhúng dashboard vào ứng dụng web hoặc chia sẻ cho người dùng khác. Nội dung 7.1. Truy cập vào Amazon QuickSight 7.2. Trực quan hóa dữ liệu QuickSight\n"
+},
+{
+	"uri": "http://thientulenguyen.github.io/vi/8-cleanup/",
+	"title": "Dọn dẹp tài nguyên",
+	"tags": [],
+	"description": "",
+	"content": "Dọn Dẹp Tài Nguyên Sau khi hoàn thành bài lab, việc dọn dẹp tài nguyên là cần thiết để tránh chi phí không mong muốn.\nXóa Tài Khoản IAM\nĐăng nhập vào AWS Management Console. Truy cập IAM. Chọn tài khoản IAM đã tạo cho bài lab này. Nhấp vào Delete user và xác nhận xóa. Xóa Các S3 Bucket\nTruy cập bảng điều khiển S3. Chọn các bucket đã tạo trong bài lab: project-spotify-data-2025 athena-output-spotifyproject-2025 Làm trống bucket trước khi xóa. Nhấp vào Delete bucket, xác nhận và tiến hành xóa. Xóa Tài Nguyên Glue\nMở AWS Glue. Truy cập Databases và xóa cơ sở dữ liệu đã tạo. Vào Tables và xóa tất cả các bảng bên trong. Chuyển đến Crawlers và xóa bất kỳ crawler nào đã tạo. Xóa Cấu Hình Athena\nMở AWS Athena. Xóa tất cả truy vấn đã lưu và workgroup nếu có. Xóa Datasets Trong QuickSight\nMở AWS QuickSight. Truy cập Datasets. Xóa tất cả các datasets đã tạo trong bài lab. Nếu không còn cần thiết, hãy hủy đăng ký QuickSight để tránh bị tính phí. "
+},
+{
+	"uri": "http://thientulenguyen.github.io/vi/categories/",
+	"title": "Categories",
+	"tags": [],
+	"description": "",
+	"content": ""
+},
+{
+	"uri": "http://thientulenguyen.github.io/vi/tags/",
+	"title": "Tags",
+	"tags": [],
+	"description": "",
+	"content": ""
+}]
